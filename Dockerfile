@@ -8,9 +8,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     curl wget sudo x11vnc xvfb openbox mesa-utils \
     adb pulseaudio dbus-x11 python3 git \
-    tigervnc-standalone-server tigervnc-common \
-    waydroid && \
+    tigervnc-standalone-server tigervnc-common && \
     apt-get clean
+
+# Install WayDroid
+RUN curl -s https://repo.waydro.id | bash && \
+    apt-get install -y waydroid
 
 # Set VNC password
 RUN mkdir -p /root/.vnc && \
