@@ -1,0 +1,15 @@
+
+version: '3.8'
+services:
+  android-emulator:
+    platform: linux/amd64  # Dùng arm64 nếu chạy trên kiến trúc ARM
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5900:5900"   # VNC
+      - "5555:5555"   # ADB
+    environment:
+      - DISPLAY=:0
+    tty: true
+    stdin_open: true
